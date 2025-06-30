@@ -80,7 +80,7 @@ final_accuracy = accuracy_score(y_test, y_pred)
 print(f"\n✅ Final BaggingClassifier Accuracy: {final_accuracy:.4f}")
 
 # 12. Save model
-joblib.dump(best_model, "../backend/model/model.pkl")
-joblib.dump(preprocessor, "../backend/model/preprocessor.pkl")  # optional if needed separately
+joblib.dump(best_model, "../model/model.pkl")
+joblib.dump(preprocessor, "../model/preprocessor.pkl")  # optional if needed separately
 
 print("\n🎯 Final Bagging model saved as best_model.")
