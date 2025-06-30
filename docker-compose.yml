@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: flask_backend
+    ports:
+      - "5000:5000"
+    networks:
+      - mlapp_net
+
+  frontend:
+    build: ./frontend
+    container_name: streamlit_frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    networks:
+      - mlapp_net
+
+networks:
+  mlapp_net:
+    driver: bridge
