@@ -1,0 +1,67 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter Notebooks Checkpoints
+.ipynb_checkpoints/
+
+# Environment files
+*.env
+
+# Model files
+*.pkl
+*.joblib
+model/
+backend/model/
+mlruns/
+*.h5
+
+# Logs and outputs
+*.log
+*.out
+*.csv
+*.tsv
+*.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode / IDE configs
+.vscode/
+.idea/
+
+# Streamlit cache
+.streamlit/
+
+# Docker and Build
+*.db
+*.sqlite3
+*.sock
+*.pid
+*.tar
+*.gz
+*.egg-info/
+dist/
+build/
+
+# Python egg metadata
+*.egg
+
+# Coverage and test
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+pytest_cache/
+test-results/
+
+# Compiled C files
+*.so

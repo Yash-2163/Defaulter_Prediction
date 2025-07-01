@@ -1,0 +1,50 @@
+# Ignore Python cache and virtual environments
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.joblib
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+
+# Ignore model files (you’ll mount them via volume instead)
+model/
+backend/model/
+*.h5
+*.onnx
+
+# Ignore logs and temporary files
+*.log
+*.out
+*.tmp
+*.bak
+*.swp
+
+# Ignore local environment and secrets
+.env
+*.env
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Ignore system and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignore MLflow tracking folder if locally used
+mlruns/
+
+# Ignore Streamlit config cache
+.streamlit/

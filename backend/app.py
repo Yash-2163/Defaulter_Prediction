@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)  # Allow requests from Streamlit frontend
 
 # Load model pipeline
-model_path = os.path.join("model", "model.pkl")
+model_path = os.path.join("..", "model", "model.pkl")
 model = joblib.load(model_path)
 
 @app.route('/predict', methods=['POST'])
