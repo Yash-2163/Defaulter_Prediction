@@ -1,116 +1,129 @@
-# 🏦 Bank Defaulter Prediction System
 
-A full-stack ML web application to predict bank customer defaults based on personal and financial attributes.
+# Bank Defaulter Prediction System
 
-This project includes:
-- 🔍 ML model: Trained BaggingClassifier with preprocessing pipelines.
-- ⚙️ Flask backend: Serves the model for real-time inference.
-- 💻 Streamlit frontend: Upload CSVs and view predictions interactively.
-- 🐳 Dockerized setup: Easily deployable with Docker Compose.
+A full‑stack machine learning application that predicts whether a bank customer will default on a personal loan. Includes prediction, data drift monitoring, and experiment tracking.
 
 ---
 
-## 🚀 Features
+## Features
 
-- Upload a CSV with customer data.
-- Get predictions on who is likely to default.
-- User-friendly interactive frontend.
-- API-based Flask backend using a saved ML pipeline.
-- Fully containerized using Docker.
-
----
-
-## 🧠 Model
-
-The model is a BaggingClassifier trained using scikit-learn pipelines. It includes:
-- Preprocessing (imputation + scaling)
-- Hyperparameter tuning using GridSearchCV
-- Model serialization using joblib
+- Upload customer data in CSV format  
+- Predict loan default using a trained BaggingClassifier model  
+- Monitor data drift and generate data summaries using Evidently  
+- Log metrics and experiments in MLflow  
+- Interactive Streamlit frontend  
+- Flask backend API for real‑time inference  
+- Docker Compose for containerized deployment  
 
 ---
 
-## 📁 Project Structure
+## Model Overview
 
+- Algorithm: `BaggingClassifier` (scikit‑learn)  
+- Preprocessing: missing‑value imputation + scaling  
+- Hyperparameter tuning: GridSearchCV  
+- Saved pipeline: `joblib`  
+
+---
+
+## Project Structure
+
+```
 Bank-Defaulter-Prediction-Project/
-├── backend/
+├── backend/                   # Flask API
 │   ├── app.py
 │   ├── model/
 │   │   └── model.pkl
 │   ├── requirements.txt
 │   └── Dockerfile
-├── frontend/
+├── frontend/                  # Streamlit prediction UI
 │   ├── streamlit_app.py
 │   ├── requirements.txt
 │   └── Dockerfile
-├── data/
-│   └── Personal_Loan.csv
-├── model_training/
+├── DataDrift/                 # Drift detection & monitoring UI
+│   ├── DataDriftCheck.py
+│   ├── generate_drift_report.py
+│   └── datadrift_report_app.py
+├── model_training/            # Model training pipeline
 │   └── train_model.py
-├── docker-compose.yml
+├── data/                      # Datasets
+│   ├── Personal_Loan.csv
+│   └── newData.csv
+├── docker-compose.yml         # Docker Compose config
 └── README.md
+```
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
-### 🔧 Option 1: Local Setup (without Docker)
+### Option 1: Run Locally (no Docker)
 
-Backend:
+**Backend**  
+```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate  (or source venv/bin/activate)
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
 pip install -r requirements.txt
-python app.py  (Runs on http://localhost:5000)
+python app.py
+```
+API available at `http://localhost:5000`
 
-Frontend:
+**Frontend (Predictions)**  
+```bash
 cd frontend
 python -m venv venv
-venv\Scripts\activate
+# activate venv...
 pip install -r requirements.txt
-streamlit run streamlit_app.py  (Opens at http://localhost:8501)
+streamlit run streamlit_app.py
+```
+UI available at `http://localhost:8501`
+
+**Drift Analysis UI**  
+```bash
+cd DataDrift
+pip install -r requirements.txt
+streamlit run datadrift_report_app.py
+```
 
 ---
 
-### 🐳 Option 2: Run with Docker
+### Option 2: Run with Docker Compose
 
-Ensure Docker is installed, then:
-
+Make sure Docker is installed, then from project root:
+```bash
 docker-compose up --build
-
-- Visit frontend: http://localhost:8501  
-- Backend runs at: http://localhost:5000 (used internally)
+```
+- Prediction UI → `http://localhost:8501`  
+- Backend API → `http://localhost:5000`  
 
 ---
 
-## 📤 CSV Input Format
+## CSV Input Format
 
-Your input CSV must not include ID, ZIP Code, or Defaulter.
+Your CSV should **exclude** these columns:  
+`ID`, `ZIP Code`, `Personal Loan` (target)  
 
-Example columns:
+Required columns example:  
+```
 Age,Experience,Income,Family,CCAvg,Education,Mortgage,Securities Account,CD Account,Online,CreditCard
+```
 
 ---
 
-## 📦 Dependencies
+## MLflow Tracking
 
-Backend:
-- Flask
-- flask-cors
-- pandas, numpy
-- scikit-learn
-- joblib
-
-Frontend:
-- streamlit
-- pandas
-- requests
+Drift and summary metrics are logged to MLflow. To view:
+```bash
+mlflow ui
+```
+Open `http://localhost:5000` in your browser.
 
 ---
 
-## 🙋‍♂️ Author
+## License
 
-Yash Rajput
-
----
-
-## 📄 License
+This project is released under the MIT License.
